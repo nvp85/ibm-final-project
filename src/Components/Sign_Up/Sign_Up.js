@@ -15,7 +15,6 @@ export default function Sign_Up() {
 
     async function register(e) {
         e.preventDefault();
-
         const response = await fetch(`${API_URL}/api/auth/register`, {
             method: "POST",
             headers: {
@@ -41,8 +40,8 @@ export default function Sign_Up() {
             navigate("/");   //on directing to home page you need to give logic to change login and signup buttons with name of the user and logout button where you have implemented Navbar functionality
             window.location.reload();
         } else {
-            if (json.errors) {
-                for (const error of json.errors) {
+            if (json.error) {
+                for (const error of json.error) {
                     setShowerr(error.msg);
                 }
             } else {
