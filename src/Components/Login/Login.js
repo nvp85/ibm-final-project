@@ -34,7 +34,7 @@ export default function Login() {
 
       if (json.authtoken) {
         sessionStorage.setItem('auth-token', json.authtoken);
-    
+        sessionStorage.setItem('name', json.name);
         sessionStorage.setItem('email', email);
         navigate('/');
         window.location.reload()
