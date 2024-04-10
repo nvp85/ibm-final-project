@@ -18,6 +18,7 @@ function App() {
                 <Route path="/Login" element={<Login/>}/>
                 <Route path='/Sign_Up' element={<Sign_Up/>}/>
                 <Route path="/instant-consultation" element={<InstantConsultation />} />
+                <Route path="/booking-appointment"  />
               </Routes>
             
         </BrowserRouter>
