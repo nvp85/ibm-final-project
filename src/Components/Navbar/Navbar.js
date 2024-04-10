@@ -64,6 +64,9 @@ export default function Navbar() {
                 <Link to="/search/doctors">Appointments</Link>
             </li>
             <li className="link">
+                <Link to="/instant-consultation">Instant Consultation</Link>
+            </li>
+            <li className="link">
                 <Link to="/healthblog">Health Blog</Link>
             </li>
             <li className="link">
@@ -72,7 +75,7 @@ export default function Navbar() {
             { isLoggedIn?(
                 <>
                     <li className="Link">
-                        Welcome, {username}
+                        <p>Welcome, {username}</p>
                     </li>
                     <li className="link">
                         <button className="btn1" onClick={handleLogout}>Logout</button>
@@ -80,16 +83,16 @@ export default function Navbar() {
                 </>
             ) : (
                 <>
-                <li className="link">
-                    <Link to="/Sign_Up">
-                        <button className="btn1">Sign Up</button>
-                    </Link>
-                </li>
-                <li className="link">
-                    <Link to="/Login">
-                        <button className="btn1">Login</button>
-                    </Link>
-                </li>
+                    <li className="link">
+                        <Link to="/Sign_Up">
+                            <button className="btn1">Sign Up</button>
+                        </Link>
+                    </li>
+                    <li className="link">
+                        <Link to="/Login">
+                            <button className="btn1">Login</button>
+                        </Link>
+                    </li>
                 </>
             )}
             

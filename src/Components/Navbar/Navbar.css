@@ -9,6 +9,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    background-color: #fff;
   }
 
 .dropdown-menu {
@@ -137,8 +138,8 @@ nav {
   border: 2px solid #3685fb;
   background-color: white;
   color: black;
-  width: 90px;
-  height: 40px;
+  width: 105px;
+  height: 50px;
   border-radius: 50px;
 }
 
