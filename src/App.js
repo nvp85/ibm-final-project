@@ -5,6 +5,7 @@ import Landing_Page from './Components/Landing_Page/Landing_page';
 import Sign_Up from './Components/Sign_Up/Sign_Up';
 import Login from './Components/Login/Login';
 import InstantConsultation from './Components/InstantConsultation/InstantConsultation';
+import BookingConsultation from './Components/BookingConsultation/BookingConsultation';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
@@ -18,7 +19,7 @@ function App() {
                 <Route path="/Login" element={<Login/>}/>
                 <Route path='/Sign_Up' element={<Sign_Up/>}/>
                 <Route path="/instant-consultation" element={<InstantConsultation />} />
-                <Route path="/booking-appointment"  />
+                <Route path="/search/doctors"  element={<BookingConsultation />} />
               </Routes>
             
         </BrowserRouter>

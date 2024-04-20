@@ -15,15 +15,18 @@ const FindDoctorSearch = () => {
     const handleDoctorSelect = (speciality) => {
         setSearchDoctor(speciality);
         setDoctorResultHidden(true);
-        navigate(`/booking-appointment?speciality=${speciality}`);
+        navigate(`/search/doctors?speciality=${speciality}`);
         window.location.reload();
     }
     return (
         <div className='finddoctor'>
             <center>
                 <h1>Find a doctor</h1>
-                <div>               <i style={{color:'#000000',fontSize:'20rem'}} className="fa fa-user-md"></i>
-</div>                <div className="home-search-container"  style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+                <div>               
+                    {/* <i style={{color:'#000000',fontSize:'20rem'}} className="fa fa-user-md"></i> */}
+                    <img src={'/doc_search.jpeg'} style={{display: 'block', alignItems:'center', height: '20rem'}} />
+                </div>                
+                <div className="home-search-container"  style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
                     <div className="doctor-search-box">
                     {/* <p>Perform a search to see the results.</p> */}
 
