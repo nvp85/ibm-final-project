@@ -53,6 +53,7 @@ const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit }) => {
                 placeholderText="Pick a date"
                 minDate={addDays(new Date(), 1)}
                 showIcon 
+                required
             />
         </div>
 
@@ -69,6 +70,7 @@ const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit }) => {
                 id='time'
                 minTime={setHours(setMinutes(new Date(), 45), 7)}
                 maxTime={setHours(setMinutes(new Date(), 0), 18)}
+                required
                 />
         </div>
         <button type="submit">Book Now</button>

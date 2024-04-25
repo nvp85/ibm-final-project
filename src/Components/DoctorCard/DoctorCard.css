@@ -189,3 +189,7 @@ button:hover {
   cursor: pointer;
   /* color: rgb(249, 60, 60); */
 }
+
+.bookedInfo {
+    text-align: center;
+}
