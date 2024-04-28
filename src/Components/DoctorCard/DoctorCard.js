@@ -54,6 +54,7 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
         }
         apptsData[name] = appointments;
         localStorage.setItem('apptsData', JSON.stringify(apptsData));
+        window.dispatchEvent(new Event("storage"));
         setFlag(false);
     }
   }, [flag]);

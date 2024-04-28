@@ -4,29 +4,37 @@ import './Notification.css'
 
 const Notification = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
-    const [username, setUsername] = useState("");
+    //const [username, setUsername] = useState("");
     //const [doctorData, setDoctorData] = useState(null);
     const [appointmentsData, setAppointmentsData] = useState([]);
     useEffect(() => {
-        const storedUsername = sessionStorage.getItem('email');
+        //const storedUsername = sessionStorage.getItem('email');
         //const storedDoctorData = JSON.parse(localStorage.getItem('apptsData'));
-        const storedAppointmentsData = JSON.parse(localStorage.getItem('apptsData'));
-
-        if (storedUsername) {
+        
+        /*if (storedUsername) {
         setIsLoggedIn(true);
         setUsername(storedUsername);
         }
-        /* if (storedDoctorData) {
+         if (storedDoctorData) {
         setDoctorData(storedDoctorData);
         } */
-        if (storedAppointmentsData) {
-            let apptsDataArray = [];
-            for (let doctor in storedAppointmentsData) {
-                apptsDataArray.push(...storedAppointmentsData[doctor]);
-            }
-            setAppointmentsData(apptsDataArray);
+        function loadAppts() {
+            const storedAppointmentsData = JSON.parse(localStorage.getItem('apptsData'));
+            if (storedAppointmentsData) {
+                let apptsDataArray = [];
+                for (let doctor in storedAppointmentsData) {
+                    apptsDataArray.push(...storedAppointmentsData[doctor]);
+                }
+                setAppointmentsData(apptsDataArray);
+            }    
         }
-  }, [localStorage.getItem('apptsData')]);
+        loadAppts();
+        window.addEventListener('storage', loadAppts);
+        return () => {
+            window.removeEventListener('storage', loadAppts);
+        }
+
+    }, []);
     return (
         <div>
         <Navbar ></Navbar>
