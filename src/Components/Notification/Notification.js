@@ -39,7 +39,7 @@ const Notification = ({ children }) => {
         <div>
         <Navbar ></Navbar>
         {children}
-        {isLoggedIn && appointmentsData && (
+        {isLoggedIn && appointmentsData.length && (
             
             <div className="appointment-card">
                 {
