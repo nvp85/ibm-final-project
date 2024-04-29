@@ -1,0 +1,32 @@
+.reviews-container {
+    display: flex;
+    justify-content: center;
+}
+
+.reviews-table {
+    margin-top: 200px;
+    border-collapse: collapse;
+}
+
+.reviews-table thead {
+    background-color: #eee;
+}
+
+
+.reviews-table caption {
+    font-weight: bold;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+tr {
+    border-bottom: 1px solid #eeee;
+}
+
+caption {
+    text-align: left;
+    font-size: large;
+}

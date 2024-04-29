@@ -5,6 +5,7 @@ import Login from './Components/Login/Login';
 import InstantConsultation from './Components/InstantConsultation/InstantConsultation';
 import BookingConsultation from './Components/BookingConsultation/BookingConsultation';
 import Notification from './Components/Notification/Notification';
+import ReviewsPage from './Components/ReviewsPage/ReviewsPage';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
@@ -19,6 +20,7 @@ function App() {
                 <Route path='/Sign_Up' element={<Sign_Up/>}/>
                 <Route path="/instant-consultation" element={<InstantConsultation />} />
                 <Route path="/search/doctors"  element={<BookingConsultation />} />
+                <Route path='/reviews' element={<ReviewsPage />} />
               </Routes>
             </Notification>
         </BrowserRouter>
