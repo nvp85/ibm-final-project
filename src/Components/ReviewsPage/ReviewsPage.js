@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReviewForm from '../ReviewForm/ReviewForm';
 import './ReviewsPage.css';
 import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 export default function ReviewsPage() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
