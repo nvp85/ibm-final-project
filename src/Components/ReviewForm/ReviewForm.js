@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import './ReviewForm.css'
+import React, { useState, useEffect } from 'react';
+import './ReviewForm.css';
 
 
 function ReviewForm(props) {
     const appt_id = props.appt_id;
     const [showForm, setShowForm] = useState(false);
     const [submittedMessage, setSubmittedMessage] = useState('');
+    const [reviews, setReviews] = useState(
+        JSON.parse(localStorage.getItem('reviews')) || []
+        );
     const [showWarning, setShowWarning] = useState(false);
     const [formData, setFormData] = useState({
             name: '',
@@ -26,14 +29,22 @@ function ReviewForm(props) {
         if (formData.name && formData.review && formData.rate) {
             setShowWarning(false);
             const new_review = {
+                id: appt_id,
                 name: formData.name,
                 review: formData.review,
                 rate: formData.rate
-            }
+            };
+            setReviews(prev => [new_review, ...prev]);
+            props.closeModal();
         } else {
             setShowWarning(true);
         }
     };
+    
+    useEffect(() => {
+        localStorage.setItem('reviews', JSON.stringify(reviews));
+    }, [reviews.length]);
+
     return (
         <div className='review-form-container'>
             <form onSubmit={handleSubmit} className='review-form'>
