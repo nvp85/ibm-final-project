@@ -29,6 +29,10 @@ export default function ReviewsPage() {
         return reviews.find((review) => review.id === appt_id) 
     };
 
+    function handleSubmit(newReview) {
+        setReviews(prev => [newReview, ...prev]);
+    };
+
     useEffect(() => {
         localStorage.setItem('reviews', JSON.stringify(reviews));
     }, [reviews.length]);
@@ -84,7 +88,7 @@ export default function ReviewsPage() {
                 modal
                 open={open}
             >
-                <ReviewForm appt_id={currAppt} close={closeModal} />
+                <ReviewForm appt_id={currAppt} close={closeModal} onSubmit={handleSubmit}/>
                 <button onClick={closeModal}>Close</button>
             </Popup>
         </div>

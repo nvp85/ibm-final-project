@@ -6,9 +6,6 @@ function ReviewForm(props) {
     const appt_id = props.appt_id;
     const [showForm, setShowForm] = useState(false);
     const [submittedMessage, setSubmittedMessage] = useState('');
-    const [reviews, setReviews] = useState(
-        JSON.parse(localStorage.getItem('reviews')) || []
-        );
     const [showWarning, setShowWarning] = useState(false);
     const [formData, setFormData] = useState({
             name: '',
@@ -25,7 +22,6 @@ function ReviewForm(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         setSubmittedMessage(formData);
-        //setFormData('');
         if (formData.name && formData.review && formData.rate) {
             setShowWarning(false);
             const new_review = {
@@ -34,17 +30,13 @@ function ReviewForm(props) {
                 review: formData.review,
                 rate: formData.rate
             };
-            setReviews(prev => [new_review, ...prev]);
+            props.onSubmit(new_review);
             props.close();
         } else {
             setShowWarning(true);
         }
     };
     
-    useEffect(() => {
-        localStorage.setItem('reviews', JSON.stringify(reviews));
-    }, [reviews.length]);
-
     return (
         <div className='review-form-container'>
             <form onSubmit={handleSubmit} className='review-form'>
