@@ -30,3 +30,8 @@ caption {
     text-align: left;
     font-size: large;
 }
+
+.give-review:disabled,
+.give-review:disabled:hover {
+    background-color: gray;
+}

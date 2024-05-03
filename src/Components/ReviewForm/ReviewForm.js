@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './ReviewForm.css';
 
 
 function ReviewForm(props) {
     const appt_id = props.appt_id;
-    const [showForm, setShowForm] = useState(false);
-    const [submittedMessage, setSubmittedMessage] = useState('');
     const [showWarning, setShowWarning] = useState(false);
     const [formData, setFormData] = useState({
             name: '',
@@ -21,7 +19,6 @@ function ReviewForm(props) {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        setSubmittedMessage(formData);
         if (formData.name && formData.review && formData.rate) {
             setShowWarning(false);
             const new_review = {

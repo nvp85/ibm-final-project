@@ -35,7 +35,7 @@ export default function ReviewsPage() {
 
     useEffect(() => {
         localStorage.setItem('reviews', JSON.stringify(reviews));
-    }, [reviews.length]);
+    }, [reviews]);
 
     return (
         <div className='reviews-container'>
@@ -55,7 +55,8 @@ export default function ReviewsPage() {
                     {
                         appointmentsData.map((appt, index) => {
                             let apptReview = findReview(appt.id);
-                            return (<tr>
+                            return (
+                            <tr>
                                 <td>{index+1}</td>
                                 <td>{appt.doctor}</td>
                                 <td>{appt.speciality}</td>
@@ -63,10 +64,10 @@ export default function ReviewsPage() {
                                     {
                                         apptReview
                                         ?
-                                        <button className='give_review' disabled>Give a review</button> 
+                                        <button className='give-review' disabled>Give a review</button> 
                                         :
                                     <button 
-                                        className='give_review' 
+                                        className='give-review' 
                                         onClick={() => {
                                             setCurrAppt(appt.id);
                                             setOpen(true);
@@ -87,6 +88,7 @@ export default function ReviewsPage() {
                 style={{ backgroundColor: '#FFFFFF' }}
                 modal
                 open={open}
+                onClose={closeModal}
             >
                 <ReviewForm appt_id={currAppt} close={closeModal} onSubmit={handleSubmit}/>
                 <button onClick={closeModal}>Close</button>
