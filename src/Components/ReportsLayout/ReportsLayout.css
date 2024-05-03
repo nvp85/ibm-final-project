@@ -1,0 +1,32 @@
+.reports-container {
+    display: flex;
+    justify-content: center;
+}
+
+.reports-table {
+    margin-top: 200px;
+    border-collapse: collapse;
+}
+
+.reports-table thead {
+    background-color: #eee;
+}
+
+
+.reports-table caption {
+    font-weight: bold;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+tr {
+    border-bottom: 1px solid #eeee;
+}
+
+caption {
+    text-align: left;
+    font-size: large;
+}

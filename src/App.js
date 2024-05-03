@@ -7,6 +7,7 @@ import BookingConsultation from './Components/BookingConsultation/BookingConsult
 import Notification from './Components/Notification/Notification';
 import ReviewsPage from './Components/ReviewsPage/ReviewsPage';
 import ProfileCard from './Components/ProfileCard/ProfileCard';
+import ReportsLayout from './Components/ReportsLayout/ReportsLayout';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
@@ -21,8 +22,9 @@ function App() {
                 <Route path='/Sign_Up' element={<Sign_Up/>}/>
                 <Route path="/instant-consultation" element={<InstantConsultation />} />
                 <Route path="/search/doctors"  element={<BookingConsultation />} />
-                <Route path='/reviews' element={<ReviewsPage />} />
-                <Route path='/profile' element={<ProfileCard />} />
+                <Route path='/reviews' element={<ReviewsPage/>} />
+                <Route path='/profile' element={<ProfileCard/>} />
+                <Route path='/reports' element={<ReportsLayout/>} />
               </Routes>
             </Notification>
         </BrowserRouter>
