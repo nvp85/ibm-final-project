@@ -6,13 +6,9 @@ import "./Navbar.css";
 
 export default function Navbar() {
     const [click, setClick] = useState(false);
-
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState("");
     const[email,setEmail]=useState("");
-    const [showDropdown, setShowDropdown] = useState(false);
-    const handleClick = () => setClick(!click);
-
     
     const handleLogout = () => {
         sessionStorage.removeItem("auth-token");
@@ -20,23 +16,16 @@ export default function Navbar() {
         sessionStorage.removeItem("email");
         sessionStorage.removeItem("phone");
         // remove email phone
-        localStorage.removeItem("doctorData");
+        //localStorage.removeItem("apptsData");
         setIsLoggedIn(false);
         // setUsername("");
        
         // Remove the reviewFormData from local storage
-        for (let i = 0; i < localStorage.length; i++) {
-          const key = localStorage.key(i);
-          if (key.startsWith("reviewFormData_")) {
-            localStorage.removeItem(key);
-          }
-        }
+        //localstorage.removeItem("reviews");
         setEmail('');
         window.location.reload();
     }
-    const handleDropdown = () => {
-      setShowDropdown(!showDropdown);
-    }
+
     useEffect(() => { 
       const storedemail = sessionStorage.getItem("email");
       const storename = sessionStorage.getItem("name");
@@ -73,8 +62,12 @@ export default function Navbar() {
             </li>
             { isLoggedIn?(
                 <>
-                    <li className="Link">
+                    <li className="welcome-user">
                         <p>Welcome, {username}</p>
+                        <ul className="dropdown-menu">
+                            <li><Link to="/profile">Your Profile</Link></li>
+                            <li><Link to="/reports">Your Reports</Link></li>
+                        </ul>
                     </li>
                     <li className="link">
                         <button className="btn1" onClick={handleLogout}>Logout</button>
