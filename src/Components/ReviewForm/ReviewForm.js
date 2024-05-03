@@ -35,7 +35,7 @@ function ReviewForm(props) {
                 rate: formData.rate
             };
             setReviews(prev => [new_review, ...prev]);
-            props.closeModal();
+            props.close();
         } else {
             setShowWarning(true);
         }

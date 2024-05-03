@@ -9,6 +9,10 @@ export default function ReviewsPage() {
     const [appointmentsData, setAppointmentsData] = useState([]);
     const [open, setOpen] = useState(false);  
     const closeModal = () => setOpen(false);
+    const [reviews, setReviews] = useState(
+        JSON.parse(localStorage.getItem('reviews')) || []
+    );
+    const [currAppt, setCurrAppt] = useState();
 
     useEffect(() => {
         const storedAppointmentsData = JSON.parse(localStorage.getItem('apptsData'));
@@ -20,6 +24,14 @@ export default function ReviewsPage() {
             setAppointmentsData(apptsDataArray);
         }    
         }, []);
+
+    function findReview(appt_id) {
+        return reviews.find((review) => review.id === appt_id) 
+    };
+
+    useEffect(() => {
+        localStorage.setItem('reviews', JSON.stringify(reviews));
+    }, [reviews.length]);
 
     return (
         <div className='reviews-container'>
@@ -37,32 +49,44 @@ export default function ReviewsPage() {
                 </thead>
                 <tbody>
                     {
-                        appointmentsData.map((appt, index) => (
-                        <tr>
-                            <td>{index+1}</td>
-                            <td>{appt.doctor}</td>
-                            <td>{appt.speciality}</td>
-                            <td>
-                                <button className='give_review' onClick={() => setOpen(true)}>
-                                            Give a review
-                                </button>
-                                <Popup
-                                    style={{ backgroundColor: '#FFFFFF' }}
-                                    modal
-                                    open={open}
-                                >
-                                    <ReviewForm appt_id={appt.id} close={closeModal} />
-                                    <button onClick={closeModal}>Close</button>
-                                </Popup>
-                            </td>
-                            <td> - </td>
-                        </tr>    
-                    ))
+                        appointmentsData.map((appt, index) => {
+                            let apptReview = findReview(appt.id);
+                            return (<tr>
+                                <td>{index+1}</td>
+                                <td>{appt.doctor}</td>
+                                <td>{appt.speciality}</td>
+                                <td>
+                                    {
+                                        apptReview
+                                        ?
+                                        <button className='give_review' disabled>Give a review</button> 
+                                        :
+                                    <button 
+                                        className='give_review' 
+                                        onClick={() => {
+                                            setCurrAppt(appt.id);
+                                            setOpen(true);
+                                        }}
+                                    >
+                                                Give a review
+                                    </button>
+                                    }
+                                </td>
+                                <td> {apptReview ? apptReview.review : "-"} </td>
+                            </tr>)    
+                    })
                     }
 
                 </tbody>
             </table>
-
+            <Popup
+                style={{ backgroundColor: '#FFFFFF' }}
+                modal
+                open={open}
+            >
+                <ReviewForm appt_id={currAppt} close={closeModal} />
+                <button onClick={closeModal}>Close</button>
+            </Popup>
         </div>
 
     )
