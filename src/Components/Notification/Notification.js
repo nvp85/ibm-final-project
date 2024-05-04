@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
-import './Notification.css'
+import './Notification.css';
+import { useNavigate } from "react-router-dom";
+
 
 const Notification = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     //const [username, setUsername] = useState("");
     //const [doctorData, setDoctorData] = useState(null);
     const [appointmentsData, setAppointmentsData] = useState([]);
+    const navigate = useNavigate();
+
     useEffect(() => {
-        //const storedUsername = sessionStorage.getItem('email');
-        //const storedDoctorData = JSON.parse(localStorage.getItem('apptsData'));
+        const authtoken = sessionStorage.getItem("auth-token");
         
-        /*if (storedUsername) {
-        setIsLoggedIn(true);
-        setUsername(storedUsername);
-        }
-         if (storedDoctorData) {
-        setDoctorData(storedDoctorData);
-        } */
+        if (authtoken) {
+            setIsLoggedIn(true);
+        } else {
+            navigate("/login");
+        };
+
         function loadAppts() {
             const storedAppointmentsData = JSON.parse(localStorage.getItem('apptsData'));
             if (storedAppointmentsData) {

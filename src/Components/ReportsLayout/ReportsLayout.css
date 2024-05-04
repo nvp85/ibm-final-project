@@ -30,3 +30,12 @@ caption {
     text-align: left;
     font-size: large;
 }
+
+.report-button {
+    padding: 3px;
+    background-color: #2190ff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

@@ -5,7 +5,6 @@ import "./Navbar.css";
 
 
 export default function Navbar() {
-    const [click, setClick] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState("");
     const[email,setEmail]=useState("");
@@ -16,15 +15,15 @@ export default function Navbar() {
         sessionStorage.removeItem("email");
         sessionStorage.removeItem("phone");
         // remove email phone
-        //localStorage.removeItem("apptsData");
+        localStorage.removeItem("apptsData");
         setIsLoggedIn(false);
-        // setUsername("");
+        setUsername("");
        
         // Remove the reviewFormData from local storage
-        //localstorage.removeItem("reviews");
+        localStorage.removeItem("reviews");
         setEmail('');
         window.location.reload();
-    }
+    };
 
     useEffect(() => { 
       const storedemail = sessionStorage.getItem("email");

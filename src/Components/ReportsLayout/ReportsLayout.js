@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import './ReportsLayout.css';
+import { useNavigate } from "react-router-dom";
 
 
 export default function ReportsLayout() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [appointmentsData, setAppointmentsData] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
+        const authtoken = sessionStorage.getItem("auth-token");
+        
+        if (authtoken) {
+            setIsLoggedIn(true);
+        } else {
+            navigate("/login");
+        };
+
         const storedAppointmentsData = JSON.parse(localStorage.getItem('apptsData'));
         if (storedAppointmentsData) {
             let apptsDataArray = [];
@@ -39,17 +49,23 @@ export default function ReportsLayout() {
                                 <td>{appt.doctor}</td>
                                 <td>{appt.speciality}</td>
                                 <td>
-                                    <button 
+                                    <a 
                                         className='report-button'
+                                        target='_blank'
+                                        href="patient_report.pdf"
                                     >
                                         View Report
-                                    </button> 
+                                    </a> 
                                     
                                 </td>
                                 <td> 
-                                    <button className='report-button'>
+                                    <a
+                                    className='report-button'
+                                    href="patient_report.pdf"
+                                    download
+                                    >
                                         Download Report
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>)    
                         })
