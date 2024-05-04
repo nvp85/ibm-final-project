@@ -3,9 +3,10 @@ import ReviewForm from '../ReviewForm/ReviewForm';
 import './ReviewsPage.css';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import { useNavigate } from "react-router-dom";
+
 
 export default function ReviewsPage() {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [appointmentsData, setAppointmentsData] = useState([]);
     const [open, setOpen] = useState(false);  
     const closeModal = () => setOpen(false);
@@ -13,17 +14,23 @@ export default function ReviewsPage() {
         JSON.parse(localStorage.getItem('reviews')) || []
     );
     const [currAppt, setCurrAppt] = useState();
-
+    const navigate = useNavigate();
     useEffect(() => {
-        const storedAppointmentsData = JSON.parse(localStorage.getItem('apptsData'));
-        if (storedAppointmentsData) {
-            let apptsDataArray = [];
-            for (let doctor in storedAppointmentsData) {
-                apptsDataArray.push(...storedAppointmentsData[doctor]);
+        const authtoken = sessionStorage.getItem("auth-token");
+        
+        if (!authtoken) {
+            navigate("/login");
+        } else {
+            const storedAppointmentsData = JSON.parse(localStorage.getItem('apptsData'));
+            if (storedAppointmentsData) {
+                let apptsDataArray = [];
+                for (let doctor in storedAppointmentsData) {
+                    apptsDataArray.push(...storedAppointmentsData[doctor]);
+                }
+                setAppointmentsData(apptsDataArray);
             }
-            setAppointmentsData(apptsDataArray);
         }    
-        }, []);
+    }, []);
 
     function findReview(appt_id) {
         return reviews.find((review) => review.id === appt_id) 

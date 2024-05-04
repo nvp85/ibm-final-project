@@ -13,19 +13,20 @@ export default function ReportsLayout() {
         
         if (authtoken) {
             setIsLoggedIn(true);
+        }; 
+        if (isLoggedIn) {
+            const storedAppointmentsData = JSON.parse(localStorage.getItem('apptsData'));
+            if (storedAppointmentsData) {
+                let apptsDataArray = [];
+                for (let doctor in storedAppointmentsData) {
+                    apptsDataArray.push(...storedAppointmentsData[doctor]);
+                }
+                setAppointmentsData(apptsDataArray);
+            }
         } else {
             navigate("/login");
-        };
-
-        const storedAppointmentsData = JSON.parse(localStorage.getItem('apptsData'));
-        if (storedAppointmentsData) {
-            let apptsDataArray = [];
-            for (let doctor in storedAppointmentsData) {
-                apptsDataArray.push(...storedAppointmentsData[doctor]);
-            }
-            setAppointmentsData(apptsDataArray);
-        }    
-        }, []);
+        };   
+    }, []);
 
     return (
         <div className='reports-container'>

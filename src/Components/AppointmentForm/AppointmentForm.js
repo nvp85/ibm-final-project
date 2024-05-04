@@ -6,12 +6,8 @@ import { addDays, setHours, setMinutes } from "date-fns";
 const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit }) => {
     const [name, setName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [selectedSlot, setSelectedSlot] = useState(null);
     const [date, setDate] = useState(setHours(setMinutes(addDays(new Date(),1),0), 8));
   
-    const handleSlotSelection = (slot) => {
-      setSelectedSlot(slot);
-    };
   
     const handleFormSubmit = (e) => {
       e.preventDefault();

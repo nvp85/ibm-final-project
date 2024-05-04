@@ -20,9 +20,9 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
 
   }, []);
 
-  const handleBooking = () => {
-    setShowModal(true);
-  };
+  //const handleBooking = () => {
+   // setShowModal(true);
+  //};
 
   const handleCancel = (appointmentId) => {
     const updatedAppointments = appointments.filter((appointment) => appointment.id !== appointmentId);
