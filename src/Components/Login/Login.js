@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { API_URL } from '../../config';
 
@@ -7,6 +7,7 @@ import { API_URL } from '../../config';
 export default function Login() {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState('');
+    const [err, setErr] = useState('');
 
     const navigate = useNavigate();
 
@@ -19,32 +20,37 @@ export default function Login() {
     const login = async (e) => {
       e.preventDefault();
 
-      const res = await fetch(`${API_URL}/api/auth/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email:email,
-          password: password,
-        }),
-      });
-
-      const json = await res.json();
-
-      if (json.authtoken) {
-        sessionStorage.setItem('auth-token', json.authtoken);
-        sessionStorage.setItem('name', json.name);
-        sessionStorage.setItem('email', email);
-        navigate('/');
-        window.location.reload()
+      // Validation of the email address
+      if (!new RegExp(/\S+@\S+\.\S+/).test(email)) {
+        setErr("Please enter a valid email address.");
       } else {
-        if (json.errors) {
-          for (const error of json.errors) {
-            alert(error.msg);
-          }
+        const res = await fetch(`${API_URL}/api/auth/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email:email,
+            password: password,
+          }),
+        });
+
+        const json = await res.json();
+
+        if (json.authtoken) {
+          sessionStorage.setItem('auth-token', json.authtoken);
+          sessionStorage.setItem('name', json.name);
+          sessionStorage.setItem('email', email);
+          navigate('/');
+          window.location.reload()
         } else {
-          alert(json.error);
+          if (json.errors) {
+            for (const error of json.errors) {
+              alert(error.msg);
+            }
+          } else {
+            alert(json.error);
+          }
         }
       }
     };
@@ -58,13 +64,15 @@ export default function Login() {
           Are you a new member? <span><a href="/Sign_Up" style={{color: "#2190FF"}}> Sign Up Here</a></span>
         </div>
         <br />
+        {err && <div className="err" style={{ color: 'red' }}><p>{err}</p></div>}
         <form className="login-form" onSubmit={login}>
           <div className="form-group">
-            <label for="email">Email</label>
+            <label htmlFor="email">Email</label>
             <input 
-                type="email" 
+                type="text" 
                 name="email" 
                 id="email" 
+                required
                 className="form-control" 
                 placeholder="Enter your email" 
                 aria-describedby="helpId" 
@@ -73,11 +81,12 @@ export default function Login() {
                 />
           </div>
           <div className="form-group">
-            <label for="password" >Password</label>
+            <label htmlFor="password" >Password</label>
             <input
               type="password"
               name="password"
               id="password"
+              required
               className="form-control"
               placeholder="Enter your password"
               aria-describedby="helpId"
