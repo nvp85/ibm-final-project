@@ -28,6 +28,8 @@ const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit }) => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+            pattern="\w{4,16}"
+            title='4 - 16 letters'
           />
         </div>
         <div className="form-group">
@@ -38,6 +40,8 @@ const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit }) => {
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
             required
+            pattern="\d{10}"
+            title='10 digits'
           />
         </div>
         <div className='form-group'>
