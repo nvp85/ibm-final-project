@@ -64,11 +64,7 @@
 
 .search-location-result-item:hover {
     background-color: #f0f0f5;
-
 }
-
-
-
 
 .doctor-search-box {
     display: flex;
@@ -79,7 +75,7 @@
     margin-bottom: 20px;
     box-shadow: rgba(0, 0, 0,.1) 0 - 1px 0 0 inset;
     border-radius: 5px;
-    height: 100vh;
+    height: 60vh;
 }
 
 .doctor-search-box>img {
