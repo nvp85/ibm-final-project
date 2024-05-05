@@ -57,3 +57,7 @@ width: 20%;
 .reviews-table thead th:nth-child(5) {
     width: 30%;
 }
+
+.give-review {
+    padding: 10px;
+}
