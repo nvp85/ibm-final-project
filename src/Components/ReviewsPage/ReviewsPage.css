@@ -4,6 +4,8 @@
 }
 
 .reviews-table {
+    table-layout: fixed;
+    width: 100%;
     margin-top: 200px;
     border-collapse: collapse;
 }
@@ -34,4 +36,24 @@ caption {
 .give-review:disabled,
 .give-review:disabled:hover {
     background-color: #eee;
+}
+
+.reviews-table thead th:nth-child(1) {
+width: 10%;
+}
+
+.reviews-table thead th:nth-child(2) {
+width: 20%;
+}
+
+.reviews-table thead th:nth-child(3) {
+width: 20%;
+}
+
+.reviews-table thead th:nth-child(4) {
+width: 20%;
+}
+
+.reviews-table thead th:nth-child(5) {
+    width: 30%;
 }
