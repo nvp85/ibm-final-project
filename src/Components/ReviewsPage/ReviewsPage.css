@@ -33,5 +33,5 @@ caption {
 
 .give-review:disabled,
 .give-review:disabled:hover {
-    background-color: gray;
+    background-color: #eee;
 }
